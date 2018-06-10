@@ -33,8 +33,10 @@ public class MysqlTest {
             sql = "SELECT * FROM city";
             ResultSet rs = stmt.executeQuery(sql);
 
+            int i = 0 ;
             // 展开结果集数据库
-            while(rs.next()){
+            while(rs.next())
+            {
                 // 通过字段检索
                 int id  = rs.getInt("id");
                 String name = rs.getString("name");
@@ -43,6 +45,11 @@ public class MysqlTest {
                 System.out.print("ID: " + id);
                 System.out.print(", cityname: " + name);
                 System.out.print("\n");
+                i ++ ;
+                if ( i == 1 )
+                {
+                    break;
+                }
             }
             // 完成后关闭
             rs.close();

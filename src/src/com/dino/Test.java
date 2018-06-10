@@ -1,5 +1,6 @@
 package com.dino;
 
+import JSON.Convers;
 import mysql.MysqlTest;
 
 import java.io.FileInputStream;
@@ -15,6 +16,8 @@ public class Test {
         MysqlTest m1 = new MysqlTest();
         m1.main();
         System.out.println("Process3");
+        Convers c1 = new Convers();
+        System.out.println("Process4");
     }
 
     public void IoMethod1() throws IOException
@@ -30,15 +33,6 @@ public class Test {
             //循环次数 = 文件字符数 除以 buf长度
             System.out.println(new String(buf, 0 ,hasRead));
             break;
-            /*
-             * 将字节强制转换成字符后逐个输出，能实现和上面一样的效果。但是如果源文件是中文的话可能会乱码
-
-            for (byte b : buf)    {
-                char ch = (char)b;
-                if (ch != '\r')
-                System.out.print(ch);
-            }
-            */
         }
         //在finally块里close更安全
         fis.close();
