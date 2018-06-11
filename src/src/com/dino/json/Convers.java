@@ -1,4 +1,4 @@
-package JSON;
+package com.dino.json;
 
 public class Convers
 {

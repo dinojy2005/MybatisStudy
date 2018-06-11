@@ -1,4 +1,4 @@
-package JSON;
+package com.dino.json;
 
 /**
  * Created by Administrator on 2018-06-11.

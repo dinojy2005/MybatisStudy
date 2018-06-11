@@ -1,6 +1,6 @@
 package com.dino;
 
-import JSON.Convers;
+import com.dino.json.Convers;
 import mysql.MysqlTest;
 
 import java.io.FileInputStream;

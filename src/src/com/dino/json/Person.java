@@ -1,4 +1,4 @@
-package JSON;
+package com.dino.json;
 
 import java.util.ArrayList;
 import java.util.List;
