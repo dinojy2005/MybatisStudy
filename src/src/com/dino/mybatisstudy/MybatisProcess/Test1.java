@@ -22,8 +22,13 @@ class MybatisProcess
         t1.testE1();
         // 多行数据
         t1.testE2();
-        // 增加数据
+        // 查询Dual数据
         t1.testDualUser();
+        // 增加数据
+        //t1.InsertUser();
+        // 删除数据
+        //t1.DeleteUserByid(10086);
+
     }
 
     private void testE1()
@@ -90,4 +95,91 @@ class MybatisProcess
         System.out.println("结束！");
 
     }
+
+    private void InsertUser()
+    {
+
+        System.out.println("开始插入！");
+        //mybatis的配置文件
+        String resource = "conf.xml";
+        //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
+        InputStream is = MybatisProcess.class.getClassLoader().getResourceAsStream(resource);
+        //构建sqlSession的工厂
+        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
+        //使用MyBatis提供的Resources类加载mybatis的配置文件（它也加载关联的映射文件）
+        //Reader reader = Resources.getResourceAsReader(resource);
+        //构建sqlSession的工厂
+        //SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        //创建能执行映射文件中sql的sqlSession
+        SqlSession session = sessionFactory.openSession();
+        /**
+         * 映射sql的标识字符串，
+         * com.dino.mybatisstudy.mapping.userMapper是userMapper.xml文件中mapper标签的namespace属性的值，
+         * getUser是select标签的id属性值，通过select标签的id属性值就可以找到要执行的SQL
+         */
+        // String statement = "com.dino.mybatisstudy.mapping.userMapper.getUser";//映射sql的标识字符串
+        // com.dino.mybatisstudy.mapping.userMapper.getUser
+        String statement = "com.dino.mybatisstudy.mapping.userMapper.InsertUser";//映射sql的标识字符串
+        //执行查询返回一个唯一user对象的sql
+
+
+        try {
+            // following 3 lines pseudocode for "doing some work"
+            User ObjToAdd = new User() ;
+            ObjToAdd.setId(10086);
+            ObjToAdd.setName("九五二七");
+            ObjToAdd.setAge(99) ;
+            session.insert(statement,ObjToAdd);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        //User user = session.selectOne(statement, 1);
+        //System.out.println(user);
+
+        System.out.println("始束插入！");
+
+    }
+
+    private void DeleteUserByid(int nId)
+    {
+
+        System.out.println("开始删除User！");
+        //mybatis的配置文件
+        String resource = "conf.xml";
+        //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
+        InputStream is = MybatisProcess.class.getClassLoader().getResourceAsStream(resource);
+        //构建sqlSession的工厂
+        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
+        //使用MyBatis提供的Resources类加载mybatis的配置文件（它也加载关联的映射文件）
+        //Reader reader = Resources.getResourceAsReader(resource);
+        //构建sqlSession的工厂
+        //SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+        //创建能执行映射文件中sql的sqlSession
+        SqlSession session = sessionFactory.openSession();
+        /**
+         * 映射sql的标识字符串，
+         * com.dino.mybatisstudy.mapping.userMapper是userMapper.xml文件中mapper标签的namespace属性的值，
+         * getUser是select标签的id属性值，通过select标签的id属性值就可以找到要执行的SQL
+         */
+        // String statement = "com.dino.mybatisstudy.mapping.userMapper.getUser";//映射sql的标识字符串
+        // com.dino.mybatisstudy.mapping.userMapper.getUser
+        String statement = "com.dino.mybatisstudy.mapping.userMapper.DeleteUserById";//映射sql的标识字符串
+        //执行查询返回一个唯一user对象的sql
+
+
+        try {
+            // following 3 lines pseudocode for "doing some work"
+            session.delete(statement,nId);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        //User user = session.selectOne(statement, 1);
+        //System.out.println(user);
+
+        System.out.println("始束删除！");
+
+    }
+
 }

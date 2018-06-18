@@ -21,4 +21,12 @@
     <select id="getDualUser" resultType="com.dino.mybatisstudy.domain.User">
         select 10086 id , 'test1' name , 99 age from dual
     </select>
+
+    <insert id="InsertUser" parameterType="com.dino.mybatisstudy.domain.User">
+      insert into users(id,name,age) values(#{id},#{name}, #{age})
+    </insert>
+
+    <delete id="DeleteUserById"  parameterType="int" >
+       delete from  users where  id=#{id}
+    </delete>
 </mapper>
