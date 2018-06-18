@@ -18,4 +18,7 @@
     <select id="getAllUser" resultType="com.dino.mybatisstudy.domain.User">
         select * from users
     </select>
+    <select id="getDualUser" resultType="com.dino.mybatisstudy.domain.User">
+        select 10086 id , 'test1' name , 99 age from dual
+    </select>
 </mapper>
